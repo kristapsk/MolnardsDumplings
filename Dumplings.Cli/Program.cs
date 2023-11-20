@@ -143,9 +143,9 @@ namespace Dumplings.Cli
                     {
                         stat.CalculateWabiSabiCoordStats(GetXpub(args));
                     }
-                    else if (command == Command.FreeMixed)
+                    else if (command == Command.FriendsDontPay)
                     {
-                        stat.CalculateDailyFreeMixedAmount();
+                        stat.CalculateDailyFriendsDontPayAmount();
                     }
                     else if (command == Command.Upload)
                     {

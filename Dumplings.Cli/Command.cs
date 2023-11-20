@@ -28,6 +28,6 @@ namespace Dumplings.Cli
         CountCoinJoins,
         Upload,                      // Upload data to Database.
         DailyVolumes,
-        FreeMixed
+        FriendsDontPay
     }
 }

@@ -1377,7 +1377,7 @@ namespace Dumplings.Stats
             return myDic;
         }
 
-        public Dictionary<YearMonthDay, decimal> CalculateDailyFreeMixedAmount()
+        public Dictionary<YearMonthDay, decimal> CalculateDailyFriendsDontPayAmount()
         {
             var postMixTxHashes = ScannerFiles.Wasabi2PostMixTxHashes;
             var ww2CoinJoins = ScannerFiles.Wasabi2CoinJoins;

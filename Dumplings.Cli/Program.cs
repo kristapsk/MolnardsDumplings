@@ -143,6 +143,10 @@ namespace Dumplings.Cli
                     {
                         stat.CalculateWabiSabiCoordStats(GetXpub(args));
                     }
+                    else if (command == Command.FreeMixed)
+                    {
+                        stat.CalculateDailyFreeMixedAmount();
+                    }
                     else if (command == Command.Upload)
                     {
                         stat.UploadToDatabase();

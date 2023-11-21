@@ -1379,7 +1379,7 @@ namespace Dumplings.Stats
 
         public Dictionary<YearMonthDay, decimal> CalculateDailyFriendsDontPayAmount()
         {
-            var postMixTxHashes = ScannerFiles.Wasabi2PostMixTxHashes;
+            var postMixTxHashes = ScannerFiles.Wasabi2PostMixTxHashes.ToDictionary(x => x, y => byte.MinValue);
             var ww2CoinJoins = ScannerFiles.Wasabi2CoinJoins;
             var myDic = new Dictionary<YearMonthDay, decimal>();
 
@@ -1392,7 +1392,7 @@ namespace Dumplings.Stats
                     var yearMonthDay = new YearMonthDay(blockTimeValue.Year, blockTimeValue.Month, blockTimeValue.Day);
 
                     decimal sum = 0;
-                    foreach (var input in tx.Inputs.Where(x => postMixTxHashes.Contains(x.OutPoint.Hash)))
+                    foreach (var input in tx.Inputs.Where(x => postMixTxHashes.ContainsKey(x.OutPoint.Hash)))
                     {
                         sum += input.PrevOutput.Value.ToDecimal(MoneyUnit.BTC);
                     }

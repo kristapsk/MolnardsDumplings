@@ -147,6 +147,10 @@ namespace Dumplings.Cli
                     {
                         stat.CalculateDailyFriendsDontPayAmount();
                     }
+                    else if (command == Command.PlebsDontPay)
+                    {
+                        stat.CalculateDailyPlebsDontPayAmount();
+                    }
                     else if (command == Command.Upload)
                     {
                         stat.UploadToDatabase();

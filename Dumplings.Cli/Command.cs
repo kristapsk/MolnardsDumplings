@@ -27,6 +27,8 @@ namespace Dumplings.Cli
         WabiSabiCoordStats,         // Calculate the monthly volumes of different kind of WabiSabi coinjoins of equal values.
         CountCoinJoins,
         Upload,                      // Upload data to Database.
-        DailyVolumes
+        DailyVolumes,
+        FriendsDontPay,
+        PlebsDontPay
     }
 }

@@ -143,6 +143,14 @@ namespace Dumplings.Cli
                     {
                         stat.CalculateWabiSabiCoordStats(GetXpub(args));
                     }
+                    else if (command == Command.FriendsDontPay)
+                    {
+                        stat.CalculateDailyFriendsDontPayAmount();
+                    }
+                    else if (command == Command.PlebsDontPay)
+                    {
+                        stat.CalculateDailyPlebsDontPayAmount();
+                    }
                     else if (command == Command.Upload)
                     {
                         stat.UploadToDatabase();

@@ -145,6 +145,32 @@ namespace Dumplings.Displaying
             }
         }
 
+        public static void DisplayWasabiResults(Dictionary<YearMonthDay, decimal> wasabiResults, out List<string> resultList)
+        {
+            resultList = new();
+
+            resultList.Add($"Date;Wasabi");
+
+            foreach (var yearMonthDay in wasabiResults
+                .Keys
+                .Distinct()
+                .OrderBy(x => x.Year)
+                .ThenBy(x => x.Month)
+                .ThenBy(x => x.Day))
+            {
+                if (!wasabiResults.TryGetValue(yearMonthDay, out decimal wasabi))
+                {
+                    wasabi = 0;
+                }
+
+                resultList.Add($"{yearMonthDay};{wasabi:0.00}");
+            }
+            foreach (var line in resultList)
+            {
+                Console.WriteLine(line);
+            }
+        }
+
         public static void DisplayWasabiSamuriResults(Dictionary<YearMonth, Money> wasabiResults, Dictionary<YearMonth, Money> samuriResults, out List<string> resultList)
         {
             resultList = new();

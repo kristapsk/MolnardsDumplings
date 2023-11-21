@@ -1415,6 +1415,43 @@ namespace Dumplings.Stats
             }
         }
 
+        public void CalculateDailyPlebsDontPayAmount()
+        {
+            var ww2CoinJoins = ScannerFiles.Wasabi2CoinJoins;
+            var myDic = new Dictionary<YearMonthDay, decimal>();
+
+            foreach (var tx in ww2CoinJoins)
+            {
+                var blockTime = tx.BlockInfo.BlockTime;
+                if (blockTime.HasValue)
+                {
+                    var blockTimeValue = blockTime.Value;
+                    var yearMonthDay = new YearMonthDay(blockTimeValue.Year, blockTimeValue.Month, blockTimeValue.Day);
+
+                    decimal sum = 0;
+                    foreach (var input in tx.Inputs.Where(x => x.PrevOutput.Value.ToDecimal(MoneyUnit.BTC) <= 0.01m))
+                    {
+                        sum += input.PrevOutput.Value.ToDecimal(MoneyUnit.BTC);
+                    }
+
+                    if (myDic.TryGetValue(yearMonthDay, out decimal current))
+                    {
+                        myDic[yearMonthDay] = current + sum;
+                    }
+                    else
+                    {
+                        myDic.Add(yearMonthDay, sum);
+                    }
+                }
+            }
+
+            Display.DisplayWasabiResults(myDic, out var resultList);
+            if (!string.IsNullOrWhiteSpace(FilePath))
+            {
+                File.WriteAllLines(FilePath, resultList);
+            }
+        }
+
         public void CalculateWasabiCoordStats(ExtPubKey[] xpubs)
         {
             using (BenchmarkLogger.Measure())

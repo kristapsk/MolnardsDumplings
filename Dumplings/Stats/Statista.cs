@@ -1377,7 +1377,7 @@ namespace Dumplings.Stats
             return myDic;
         }
 
-        public Dictionary<YearMonthDay, decimal> CalculateDailyFriendsDontPayAmount()
+        public void CalculateDailyFriendsDontPayAmount()
         {
             var postMixTxHashes = ScannerFiles.Wasabi2PostMixTxHashes.ToDictionary(x => x, y => byte.MinValue);
             var ww2CoinJoins = ScannerFiles.Wasabi2CoinJoins;
@@ -1413,8 +1413,6 @@ namespace Dumplings.Stats
             {
                 File.WriteAllLines(FilePath, resultList);
             }
-
-            return myDic;
         }
 
         public void CalculateWasabiCoordStats(ExtPubKey[] xpubs)
